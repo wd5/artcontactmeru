@@ -1,0 +1,13 @@
+
+PROJECTNAME=artcontactru
+
+OWNER=rad
+GROUP=rad
+
+INSTALL_DJANGO_DIR=/home/rad/django.apps
+
+REGEXP_DEVEL_URL=http:\/\/artcontactru\/
+
+PO=$(wildcard ./locale/ru/LC_MESSAGES/*.po)
+MO=$(patsubst %.po,%.mo,$(PO))
+
