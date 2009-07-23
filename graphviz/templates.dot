@@ -1,0 +1,140 @@
+digraph G {
+	graph [rankdir = "TB", compound=true, ratio=compress, size="16,10", 
+		remincross=true, center=true];
+	node [shape=plaintext, fontname="Verdana", fontsize=8];
+	edge [arrowsize=1, color=blue, fontname="Verdana", fontsize=8];
+	
+base [label="base.html", shape="record"];
+404 [label="404.html", shape="record"];
+500 [label="500.html", shape="record"];
+content [label="content.html", shape="record"];
+
+base -> 404 [color="blue"];
+base -> 500 [color="blue"];
+base -> content [color="blue"];
+content -> main_index [color="blue"];
+content -> artist_index [color="blue"];
+content -> event_index [color="blue"];
+content -> media_index [color="blue"];
+
+subgraph cluster_main {label="Главная страница"; labelloc="t"; 
+	 fontname="Verdana"; fontsize=12; color="gray"
+
+	 main_index [label="main.html", shape="record"];
+
+	 main_artist [label="artist.html", shape="record"];
+	 main_last_news [label="last-news.html", shape="record"];
+	 main_list_events [label="list-events.html", shape="record"];
+	 main_short_artists [label="short-artists.html", shape="record"];
+	 main_short_media [label="short-media.html", shape="record"];
+
+	 main_index -> main_last_news [color="brown"];
+	 main_index -> main_artist [color="brown"];
+	 main_index -> main_list_events [color="brown"];
+	 main_index -> main_short_artists [color="brown"];
+	 main_index -> main_short_media [color="brown"];
+	 };
+
+subgraph cluster_artist {label="Артист"; labelloc="t"; 
+	 fontname="Verdana"; fontsize=12; color="gray"
+
+	 artist_index [label="main.html", shape="record"];
+
+	 artist_order [label="order.html", shape="record"];
+	 artist_artist [label="artist.html", shape="record"];
+	 artist_short_events [label="short-events.html", shape="record"];
+	 artist_short_media [label="short-media.html", shape="record"];
+
+	 artist_index -> artist_order [color="brown"];
+	 artist_index -> artist_artist [color="brown"];
+	 artist_index -> artist_short_events [color="brown"];
+	 artist_index -> artist_short_media [color="brown"];
+	 };
+
+subgraph cluster_artist_alot {label="Список артистов"; labelloc="t"; 
+	 fontname="Verdana"; fontsize=12; color="gray"
+
+	 artist_alot_index [label="main.html", shape="record"];
+
+	 artist_alot_order [label="order.html", shape="record"];
+	 artist_alot_list_artist [label="list-artists.html", shape="record"];
+	 artist_alot_short_events [label="short-events.html", shape="record"];
+	 artist_alot_short_media [label="short-media.html", shape="record"];
+
+	 artist_alot_index -> artist_alot_order [color="brown"];
+	 artist_alot_index -> artist_alot_list_artist [color="brown"];
+	 artist_alot_index -> artist_alot_short_events [color="brown"];
+	 artist_alot_index -> artist_alot_short_media [color="brown"];
+	 };
+
+artist_index -> artist_alot_index [color="red"];
+
+subgraph cluster_event {label="Событие"; labelloc="t"; 
+	 fontname="Verdana"; fontsize=12; color="gray"
+
+	 event_index [label="main.html", shape="record"];
+
+	 event_order [label="order.html", shape="record"];
+	 event_event [label="event.html", shape="record"];
+	 event_short_artists [label="short-artists.html", shape="record"];
+	 event_short_media [label="short-media.html", shape="record"];
+
+	 event_index -> event_order [color="brown"];
+	 event_index -> event_event [color="brown"];
+	 event_index -> event_short_artists [color="brown"];
+	 event_index -> event_short_media [color="brown"];
+	 };
+
+subgraph cluster_event_alot {label="Список событий"; labelloc="t"; 
+	 fontname="Verdana"; fontsize=12; color="gray"
+
+	 event_alot_index [label="main.html", shape="record"];
+
+	 event_alot_order [label="order.html", shape="record"];
+	 event_alot_list_events [label="list-events.html", shape="record"];
+	 event_alot_short_artists [label="short-artists.html", shape="record"];
+	 event_alot_short_media [label="short-media.html", shape="record"];
+
+	 event_alot_index -> event_alot_order [color="brown"];
+	 event_alot_index -> event_alot_list_events [color="brown"];
+	 event_alot_index -> event_alot_short_artists [color="brown"];
+	 event_alot_index -> event_alot_short_media [color="brown"];
+	 };
+
+event_index -> event_alot_index [color="red"];
+
+subgraph cluster_media {label="Медиа"; labelloc="t"; 
+	 fontname="Verdana"; fontsize=12; color="gray"
+
+	 media_index [label="main.html", shape="record"];
+
+	 media_order [label="order.html", shape="record"];
+	 media_media [label="media.html", shape="record"];
+	 media_short_media [label="short-media.html", shape="record"];
+	 media_short_events [label="short-events.html", shape="record"];
+
+	 media_index -> media_order [color="brown"];
+	 media_index -> media_media [color="brown"];
+	 media_index -> media_short_media [color="brown"];
+	 media_index -> media_short_events [color="brown"];
+	 };
+
+subgraph cluster_media_alot {label="Список медиа"; labelloc="t"; 
+	 fontname="Verdana"; fontsize=12; color="gray"
+
+	 media_alot_index [label="main.html", shape="record"];
+
+	 media_alot_order [label="order.html", shape="record"];
+	 media_alot_list_media [label="list-media.html", shape="record"];
+	 media_alot_short_media [label="short-media.html", shape="record"];
+	 media_alot_short_events [label="short-events.html", shape="record"];
+
+	 media_alot_index -> media_alot_order [color="brown"];
+	 media_alot_index -> media_alot_list_media [color="brown"];
+	 media_alot_index -> media_alot_short_media [color="brown"];
+	 media_alot_index -> media_alot_short_events [color="brown"];
+	 };
+
+media_index -> media_alot_index [color="red"];
+
+};
