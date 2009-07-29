@@ -1,0 +1,11 @@
+<div class="short-area">
+  <div class="title">
+    {{ section.title }}
+  </div>
+
+  <div class="area">
+    {% for i in section.list %}
+    <div><a href="{{ i.get_absolute_url }}">{{ i }}</a></div>
+    {% endfor %}
+  </div>
+</div>

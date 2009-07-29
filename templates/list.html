@@ -1,0 +1,19 @@
+{# Страница для отображения списка групп/событий/медиа. #}
+
+<div class="title">{{ list_title }}</div>
+
+<div id="item-list">
+  {% for item in item_list %}
+  <div class="item">
+    <div class="title">{{ item.title }}</div>
+    {#<img class="preview" src="#" title="Нажмите для просмотра" align="left"/>#}
+    <div style="width: 200px; height: 150px; border: 1px solid gray; margin: 0.5em; float: left;"></div>
+    <div class="description">{{ item.desc|truncatewords:30 }}</div>
+    <div class="follow"><a href="/{{ collection }}/{{ item.id }}/">Далее</a></div>
+  </div>
+  {% empty %}
+  <div class="empty">
+    Элементы отсутствуют...
+  </div>
+  {% endfor %}
+</div>

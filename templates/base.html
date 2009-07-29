@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="Content-Language" content="ru"/>
+  <meta name="generator" content="Django"/>
+  <title>{{ page_title }}</title>
+  <link rel="stylesheet" href="http://artcontactru/css/main.css" type="text/css"/>
+  <link rel="shortcut icon" href="http://artcontactru/pics/favicon.png"/>
+  <script type="text/javascript" src="http://artcontactru/js/jquery.js"></script>
+</head>
+
+{# load thumbnail_filter #}
+
+<body>
+  {% include "header.html" %}
+  {% block content %}{% endblock %}
+  {% include "footer.html" %}
+</body>
+
+{% if not debug %}{{ google_analytics|safe }}{% endif %}
+
+</html>

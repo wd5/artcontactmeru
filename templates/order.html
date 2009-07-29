@@ -1,0 +1,30 @@
+{# Страница для отображения контактной информации и формы заказа. #}
+
+<div id="order">
+  <div id="contact">
+    <div class="title">Контакт</div>
+
+    {#<img src="#" width="240" height="320"/>#}
+    <div style="width:240px; height:320px; border: 1px solid gray;"></div>
+
+    <div class="phone">+7 495 123 4567</div>
+    <div class="email"><a href="mailto:info@artcontact.ru">info@artcontact.ru</a></div>
+  </div>
+
+  <div id="form">
+    <div class="title">Заказ</div>
+
+    <div>
+      <input type="text" name="name" value="Ваше имя"/>
+    </div>
+    <div>
+      <input type="text" name="contact" value="Ваш телефон или e-mail"/>
+    </div>
+    <div>
+      <textarea name="message">Сообщение</textarea>
+    </div>
+    <div class="right">
+      <button type="button" name="send" onclick="return message_send();">Отправить</button>
+    </div>
+  </div>
+</div>
