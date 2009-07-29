@@ -28,6 +28,14 @@ clean_subdirs:
 create_dir:
 	mkdir -p $(CURRENT_INSTALL_DIR);
 
+create_media:
+	for i in $(MEDIADIRS) end-of-files-list; do \
+	  if [ $$i != end-of-files-list ]; then \
+	    mkdir -p $(CURRENT_INSTALL_DIR)/media/$$i; \
+	    chmod -R 777 $(CURRENT_INSTALL_DIR)/media/$$i; \
+	  fi; \
+	done
+
 install_files:
 	cp $(FILES) $(CURRENT_INSTALL_DIR)/;
 

@@ -1,7 +1,9 @@
 include config.mk
 
 CURRENT_INSTALL_DIR=$(INSTALL_DJANGO_DIR)/$(PROJECTNAME)
-SUBDIRS=css locale pics templates
+SUBDIRS=css locale pics templates \
+    collection mediastore
+MEDIADIRS=files/photo files/video files/audio
 FILES=$(wildcard *.py) django.wsgi
 
 all: subdirs
@@ -13,7 +15,7 @@ help:
 	echo "dump      - make database dump"; \
 	echo "translate - prepare i18n"
 
-install: create_dir install_files install_subdirs chown_all
+install: create_dir create_media install_files install_subdirs chown_all
 
 clean: clean_subdirs
 	rm -f $(wildcard *.pyc) *~
