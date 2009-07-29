@@ -1,140 +1,144 @@
 digraph G {
-	graph [rankdir = "TB", compound=true, ratio=compress, size="16,10", 
+	graph [rankdir = "TB", compound=true, ratio=compress, 
 		remincross=true, center=true];
 	node [shape=plaintext, fontname="Verdana", fontsize=8];
 	edge [arrowsize=1, color=blue, fontname="Verdana", fontsize=8];
 	
+###
+### Базовые шаблоны
+###
+
 base [label="base.html", shape="record"];
+header [label="header.html", shape="record"];
+footer [label="footer.html", shape="record"];
 404 [label="404.html", shape="record"];
 500 [label="500.html", shape="record"];
-content [label="content.html", shape="record"];
+
+###
+### Связи базовых шаблонов
+###
 
 base -> 404 [color="blue"];
 base -> 500 [color="blue"];
-base -> content [color="blue"];
-content -> main_index [color="blue"];
-content -> artist_index [color="blue"];
-content -> event_index [color="blue"];
-content -> media_index [color="blue"];
+base -> header [color="blue"];
+base -> footer [color="blue"];
 
-subgraph cluster_main {label="Главная страница"; labelloc="t"; 
+base -> cluster_content [color="blue"];
+
+###
+### Группа подключаемых шаблонов
+###
+
+subgraph cluster_include {label="Подключаемые шаблоны"; labelloc="t"; 
+	 fontname="Verdana"; fontsize=12; color="gray";
+
+	 order [label="order.html", shape="record", color="green"];
+	 item [label="item.html", shape="record", color="green"];
+	 list [label="list.html", shape="record", color="green"];
+	 short [label="short.html", shape="record", color="green"];
+};
+
+###
+### Страница
+###
+
+subgraph cluster_content {label="Основной шаблон"; labelloc="t"; 
 	 fontname="Verdana"; fontsize=12; color="gray"
 
-	 main_index [label="main.html", shape="record"];
+	 subgraph cluster_struct_content {label="content.html"; labelloc="t"; 
+	 	  struct_content [shape="record", label="<order> order|<item_or_list> item or list|{<short_a> short a|<short_b> short b}"];
+         };
+};
 
-	 main_artist [label="artist.html", shape="record"];
-	 main_last_news [label="last-news.html", shape="record"];
-	 main_list_events [label="list-events.html", shape="record"];
-	 main_short_artists [label="short-artists.html", shape="record"];
-	 main_short_media [label="short-media.html", shape="record"];
+order -> struct_content:order [color="orange"];
+item -> struct_content:item_or_list [color="orange"];
+list -> struct_content:item_or_list [color="orange"];
+short -> struct_content:short_a [color="orange"];
+short -> struct_content:short_b [color="orange"];
 
-	 main_index -> main_last_news [color="brown"];
-	 main_index -> main_artist [color="brown"];
-	 main_index -> main_list_events [color="brown"];
-	 main_index -> main_short_artists [color="brown"];
-	 main_index -> main_short_media [color="brown"];
-	 };
+###
+### Артист
+###
 
-subgraph cluster_artist {label="Артист"; labelloc="t"; 
-	 fontname="Verdana"; fontsize=12; color="gray"
+subgraph cluster_struct_artist {label="Артист"; labelloc="t"; fontname="Verdana"; fontsize=12; color="gray";
+	 struct_artist [shape="record", label="<order> order|<artist> artist|{<short_event> short event|<short_media> short media}"];
+};
 
-	 artist_index [label="main.html", shape="record"];
+order -> struct_artist:order [color="orange"];
+item -> struct_artist:artist [color="orange"];
+short -> struct_artist:short_event [color="orange"];
+short -> struct_artist:short_media [color="orange"];
 
-	 artist_order [label="order.html", shape="record"];
-	 artist_artist [label="artist.html", shape="record"];
-	 artist_short_events [label="short-events.html", shape="record"];
-	 artist_short_media [label="short-media.html", shape="record"];
+###
+### Список артистов
+###
 
-	 artist_index -> artist_order [color="brown"];
-	 artist_index -> artist_artist [color="brown"];
-	 artist_index -> artist_short_events [color="brown"];
-	 artist_index -> artist_short_media [color="brown"];
-	 };
+subgraph cluster_struct_list_artist {label="Список артистов"; labelloc="t"; fontname="Verdana"; fontsize=12; color="gray";
+	 struct_list_artist [shape="record", label="<order> order|<list_artist> list_artist|{<short_event> short event|<short_media> shortmedia}"];
+};
 
-subgraph cluster_artist_alot {label="Список артистов"; labelloc="t"; 
-	 fontname="Verdana"; fontsize=12; color="gray"
+order -> struct_list_artist:order [color="orange"];
+list -> struct_list_artist:list_artist [color="orange"];
+short -> struct_list_artist:short_event [color="orange"];
+short -> struct_list_artist:short_media [color="orange"];
 
-	 artist_alot_index [label="main.html", shape="record"];
+###
+### Событие
+###
 
-	 artist_alot_order [label="order.html", shape="record"];
-	 artist_alot_list_artist [label="list-artists.html", shape="record"];
-	 artist_alot_short_events [label="short-events.html", shape="record"];
-	 artist_alot_short_media [label="short-media.html", shape="record"];
+subgraph cluster_event {label="Событие"; labelloc="t"; fontname="Verdana"; fontsize=12; color="gray";
+	 struct_event [shape="record", label="<order> order|<event> event|{<short_artist> short artist|<short_media> short media}"];
+};
 
-	 artist_alot_index -> artist_alot_order [color="brown"];
-	 artist_alot_index -> artist_alot_list_artist [color="brown"];
-	 artist_alot_index -> artist_alot_short_events [color="brown"];
-	 artist_alot_index -> artist_alot_short_media [color="brown"];
-	 };
+order -> struct_event:order [color="orange"];
+item -> struct_event:event [color="orange"];
+short -> struct_event:short_artist [color="orange"];
+short -> struct_event:short_media [color="orange"];
 
-artist_index -> artist_alot_index [color="red"];
+###
+### Список событий
+###
 
-subgraph cluster_event {label="Событие"; labelloc="t"; 
-	 fontname="Verdana"; fontsize=12; color="gray"
+subgraph cluster_struct_list_event {label="Список событий"; labelloc="t"; fontname="Verdana"; fontsize=12; color="gray";
+	 struct_list_event [shape="record", label="<order> order|<list_event> list event|{<short_artist> short artist|<short_media> short media}"];
+};
 
-	 event_index [label="main.html", shape="record"];
+order -> struct_list_event:order [color="orange"];
+list -> struct_list_event:list_event [color="orange"];
+short -> struct_list_event:short_artist [color="orange"];
+short -> struct_list_event:short_media [color="orange"];
 
-	 event_order [label="order.html", shape="record"];
-	 event_event [label="event.html", shape="record"];
-	 event_short_artists [label="short-artists.html", shape="record"];
-	 event_short_media [label="short-media.html", shape="record"];
+###
+### Медиа
+###
 
-	 event_index -> event_order [color="brown"];
-	 event_index -> event_event [color="brown"];
-	 event_index -> event_short_artists [color="brown"];
-	 event_index -> event_short_media [color="brown"];
-	 };
+subgraph cluster_struct_media {label="Медиа"; labelloc="t"; fontname="Verdana"; fontsize=12; color="gray";
+	 struct_media [shape="record", label="<order> order|<media> media|{<short_event> short event|<short_artist> short artist}"];
+};
 
-subgraph cluster_event_alot {label="Список событий"; labelloc="t"; 
-	 fontname="Verdana"; fontsize=12; color="gray"
+order -> struct_media:order [color="orange"];
+item -> struct_media:media [color="orange"];
+short -> struct_media:short_event [color="orange"];
+short -> struct_media:short_artist [color="orange"];
 
-	 event_alot_index [label="main.html", shape="record"];
+###
+### Список медиа
+###
 
-	 event_alot_order [label="order.html", shape="record"];
-	 event_alot_list_events [label="list-events.html", shape="record"];
-	 event_alot_short_artists [label="short-artists.html", shape="record"];
-	 event_alot_short_media [label="short-media.html", shape="record"];
+subgraph cluster_struct_list_media {label="Список медиа"; labelloc="t"; fontname="Verdana"; fontsize=12; color="gray";
+	 struct_list_media [shape="record", label="<order> order|<list_media> list media|{<short_artist> short artist|<short_event> short event}"];
+};
 
-	 event_alot_index -> event_alot_order [color="brown"];
-	 event_alot_index -> event_alot_list_events [color="brown"];
-	 event_alot_index -> event_alot_short_artists [color="brown"];
-	 event_alot_index -> event_alot_short_media [color="brown"];
-	 };
+order -> struct_list_media:order [color="orange"];
+list -> struct_list_media:list_media [color="orange"];
+short -> struct_list_media:short_artist [color="orange"];
+short -> struct_list_media:short_event [color="orange"];
 
-event_index -> event_alot_index [color="red"];
-
-subgraph cluster_media {label="Медиа"; labelloc="t"; 
-	 fontname="Verdana"; fontsize=12; color="gray"
-
-	 media_index [label="main.html", shape="record"];
-
-	 media_order [label="order.html", shape="record"];
-	 media_media [label="media.html", shape="record"];
-	 media_short_media [label="short-media.html", shape="record"];
-	 media_short_events [label="short-events.html", shape="record"];
-
-	 media_index -> media_order [color="brown"];
-	 media_index -> media_media [color="brown"];
-	 media_index -> media_short_media [color="brown"];
-	 media_index -> media_short_events [color="brown"];
-	 };
-
-subgraph cluster_media_alot {label="Список медиа"; labelloc="t"; 
-	 fontname="Verdana"; fontsize=12; color="gray"
-
-	 media_alot_index [label="main.html", shape="record"];
-
-	 media_alot_order [label="order.html", shape="record"];
-	 media_alot_list_media [label="list-media.html", shape="record"];
-	 media_alot_short_media [label="short-media.html", shape="record"];
-	 media_alot_short_events [label="short-events.html", shape="record"];
-
-	 media_alot_index -> media_alot_order [color="brown"];
-	 media_alot_index -> media_alot_list_media [color="brown"];
-	 media_alot_index -> media_alot_short_media [color="brown"];
-	 media_alot_index -> media_alot_short_events [color="brown"];
-	 };
-
-media_index -> media_alot_index [color="red"];
+#cluster_struct_content -> cluster_struct_artist [color="blue"];
+#cluster_struct_content -> cluster_struct_list_artist [color="blue"];
+#cluster_struct_content -> cluster_struct_event [color="blue"];
+#cluster_struct_content -> cluster_struct_list_event [color="blue"];
+#cluster_struct_content -> cluster_struct_media [color="blue"];
+#cluster_struct_content -> cluster_struct_list_media [color="blue"];
 
 };
