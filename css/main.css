@@ -1,0 +1,90 @@
+body { 
+   color: white; background-color: black;
+   font-family: verdana; font-size: 100%; 
+   margin: 0em;
+}
+
+a { color: orange; }
+
+input[type="text"] {
+   width: 96%; padding: 2px 4px;
+   color: white; background-color: black; 
+   border: 0px solid gray; border-width: 0 0 1px 0;
+}
+
+textarea {
+   width: 96%; height: 200px; padding: 2px 4px;
+   color: white; background-color: black; 
+   border: 1px solid gray;
+}
+
+button {
+   width: 96%; padding: 2px 4px;
+   color: white; background-color: black; 
+   border: 1px solid gray; cursor: pointer; 
+}
+button:hover { background-color: gray; }
+
+.right { text-align: right; }
+
+.title {
+   font-family: comic sans ms; font-size: 100%; 
+}
+
+#header {
+   position: absolute; top: 0px; botton: auto; left: 0px; right: 0px; height: 4em;
+   color: white; background-color: #770b0b;
+   padding: 0.5em;
+}
+
+#header .title {
+   font-size: 300%; 
+}
+
+#footer {
+   height: 2em;
+   font-size: 90%; 
+   color: white; background-color: #770b0b;
+}
+
+#search {
+   position: absolute; top: 0px; right: 0px; background-color: black;
+   min-width: 300px; padding: 8px;
+   border: 0px solid white; border-width: 0 0 1px 1px; -moz-border-radius: 0 0 0 8px;
+}
+
+#menu { 
+   position: absolute; bottom: 0px; right: 0px; 
+   text-align: right;
+   background-color: #770b0b; color: white;
+   padding: 2px 8px;
+}
+#menu .item { padding: 4px 8px; border: 0px solid white; border-width: 1px 0px 0px 1px; width: 150px; font-size: 90%; cursor: pointer; }
+#menu .item:hover { background-color: black; }
+
+#order { margin: 0px 4px 0px 0px; }
+
+#order > * >  .title { margin: 0.5em 0em; padding: 4px 8px; background-color: #770b0b; 
+   border: 0px solid white; border-width: 1px 1px 1px 0px; -moz-border-radius: 0 4px 4px 0; }
+
+.content {
+   color: white; background-color: #050505; padding: 0.5em 1em;
+}
+
+.content > .title { font-size: 120%; }
+
+#item-list { padding: 0.5em; }
+
+.description { font-size: 80%; }
+
+.follow { clear: both; text-align: right; margin: 0.1em 0em 1em 0em; }
+
+.short-area { min-height: 10em; }
+
+.short-area .title { margin: 0.5em 0em; padding: 4px 8px; background-color: #770b0b; 
+   border: 0px solid white; border-width: 1px 0px 1px 1px; -moz-border-radius: 4px 0 0 4px;
+}
+
+.area {
+   padding: 0.5em;
+}
