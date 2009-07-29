@@ -77,6 +77,8 @@ button:hover { background-color: gray; }
 
 .description { font-size: 80%; }
 
+.preview { float: left; margin: 0.5em; border: 1px solid #770b0b; }
+
 .follow { clear: both; text-align: right; margin: 0.1em 0em 1em 0em; }
 
 .short-area { min-height: 10em; }

@@ -3,6 +3,7 @@
 from django.contrib import admin
 
 from collection import models
+from mediastore.admin import PhotoInline
 
 class PersonAdmin(admin.ModelAdmin):
     list_display = ('title', 'reg_date', 'last_modification')
@@ -12,6 +13,8 @@ class PersonAdmin(admin.ModelAdmin):
 admin.site.register(models.Person, PersonAdmin)
 
 class BandAdmin(admin.ModelAdmin):
+    model = models.Band
+    inlines = (PhotoInline, )
     list_display = ('title',)
     ordered = ('title',)
     search_fields = ('title',)
@@ -19,6 +22,8 @@ class BandAdmin(admin.ModelAdmin):
 admin.site.register(models.Band, BandAdmin)
 
 class EventAdmin(admin.ModelAdmin):
+    model = models.Event
+    inlines = (PhotoInline, )
     list_display = ('title', 'where', 'when')
     ordered = ('title',)
     search_fields = ('title',)

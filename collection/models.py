@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
+from django.contrib.contenttypes import generic
+
+from mediastore.models import Photo, Video, Audio
 
 # Определяем абстрактный класс для элемента коллекции
 class CommonEntity(models.Model):
@@ -31,8 +34,8 @@ class Person(CommonEntity):
 
 class Band(CommonEntity):
     """ Группа, коллектив артистов. """
-    #photo = models.ForeignKey()
     members = models.ManyToManyField(Person, verbose_name=u'Состав')
+    photo = generic.GenericRelation(Photo)
 
     class Meta:
         verbose_name = u'Коллектив'
@@ -44,9 +47,9 @@ class Band(CommonEntity):
 class Event(CommonEntity):
     """ Событие. """
     bands = models.ManyToManyField(Band, verbose_name=u'Участники')
-    #photo = models.ForeignKey()
     when = models.DateField(verbose_name=u'Дата')
     where = models.CharField(verbose_name=u'Место проведения', max_length=256)
+    photo = generic.GenericRelation(Photo)
 
     class Meta:
         verbose_name = u'Событие'
