@@ -1,7 +1,7 @@
 include config.mk
 
 CURRENT_INSTALL_DIR=$(INSTALL_DJANGO_DIR)/$(PROJECTNAME)
-SUBDIRS=css locale pics templates \
+SUBDIRS=css pics templates \
     collection mediastore
 MEDIADIRS=files/photo files/video files/audio
 FILES=$(wildcard *.py) django.wsgi

@@ -1,10 +1,10 @@
 
-PROJECTNAME=artcontactru
+PROJECTNAME=artcontactmeru
 
-OWNER=rad
-GROUP=rad
+OWNER=anedina
+GROUP=anedina
 
-INSTALL_DJANGO_DIR=/home/rad/django.apps
+INSTALL_DJANGO_DIR=/home/anedina/django.apps
 
 REGEXP_DEVEL_URL=http:\/\/artcontactru\/
 
