@@ -42,7 +42,7 @@ class Band(CommonEntity):
         verbose_name_plural = u'Коллективы'
 
     def get_absolute_url(self):
-        return u'/band/%i/' % self.id
+        return u'/project/%i/' % self.id
 
 class Event(CommonEntity):
     """ Событие. """

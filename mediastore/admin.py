@@ -10,6 +10,7 @@ class PhotoInline(GenericTabularInline):
     extra = 2
     ct_field_name = 'content_type'
     id_field_name = 'object_id'
+    fields = ('title', 'tags', 'file')
 
 class PhotoAdmin(admin.ModelAdmin):
     list_display = ('title', 'upload_date', 'last_modification')

@@ -1,3 +1,8 @@
+/*
+Основные цвета:
+black, #888888 (серый), #770b0b (бордовый), orange (ссылки)
+*/
+
 body { 
    color: white; background-color: black;
    font-family: verdana; font-size: 100%; 
@@ -9,14 +14,15 @@ a { color: orange; }
 input[type="text"] {
    width: 96%; padding: 2px 4px;
    color: white; background-color: black; 
-   border: 0px solid gray; border-width: 0 0 1px 0;
+   border: 0px dotted #888888; border-width: 0 0 1px 0;
 }
 
 textarea {
-   width: 96%; height: 200px; padding: 2px 4px;
+   width: 94%; height: 200px; padding: 2px 4px; margin: 0.5em 4px;
    color: white; background-color: black; 
    border: 1px solid gray;
 }
+#order textarea { border: 0px solid black; background: black url(/pics/dots_32x15.gif) repeat scroll 0 0; }
 
 button {
    width: 96%; padding: 2px 4px;
@@ -28,7 +34,7 @@ button:hover { background-color: gray; }
 .right { text-align: right; }
 
 .title {
-   font-family: comic sans ms; font-size: 100%; 
+   font-family: comic sans ms; font-size: 100%;
 }
 
 #header {
@@ -59,13 +65,21 @@ button:hover { background-color: gray; }
    background-color: #770b0b; color: white;
    padding: 2px 8px;
 }
-#menu .item { padding: 4px 8px; border: 0px solid white; border-width: 1px 0px 0px 1px; width: 150px; font-size: 90%; cursor: pointer; }
+#menu .item { 
+   padding: 4px 8px; border: 0px solid white; border-width: 1px 0px 0px 1px; 
+   width: 150px; font-size: 90%; cursor: pointer; 
+}
 #menu .item:hover { background-color: black; }
 
 #order { margin: 0px 4px 0px 0px; }
 
-#order > * >  .title { margin: 0.5em 0em; padding: 4px 8px; background-color: #770b0b; 
-   border: 0px solid white; border-width: 1px 1px 1px 0px; -moz-border-radius: 0 4px 4px 0; }
+.arttitle { 
+   margin: 0.5em 0em; padding: 4px 8px 4px 20px; border: 0px solid white;
+   background: #770b0b url(/pics/art.png) no-repeat scroll 4px 4px;
+}
+#order > * > .arttitle { border-width: 1px 1px 1px 0px; -moz-border-radius: 0 4px 4px 0; 
+   background: #770b0b url(/pics/black-left.png) repeat-y scroll 0 0;}
+.short-area .arttitle  { border-width: 1px 0px 1px 1px; -moz-border-radius: 4px 0 0 4px; }
 
 .content {
    color: white; background-color: #050505; padding: 0.5em 1em;
@@ -83,10 +97,4 @@ button:hover { background-color: gray; }
 
 .short-area { min-height: 10em; }
 
-.short-area .title { margin: 0.5em 0em; padding: 4px 8px; background-color: #770b0b; 
-   border: 0px solid white; border-width: 1px 0px 1px 1px; -moz-border-radius: 4px 0 0 4px;
-}
-
-.area {
-   padding: 0.5em;
-}
+.area { padding: 0.5em; }
