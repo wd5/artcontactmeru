@@ -2,8 +2,6 @@
 # Действия
 #
 
-MAKE=gmake
-
 subdirs:
 	for i in $(SUBDIRS) end-of-subdirs-list; do \
 		if [ $$i != end-of-subdirs-list ]; then \

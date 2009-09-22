@@ -6,7 +6,9 @@ GROUP=anedina
 
 INSTALL_DJANGO_DIR=/home/anedina/django.apps
 
-REGEXP_DEVEL_URL=http:\/\/artcontactru\/
+REGEXP_DEVEL_URL=http:\/\/artcontactru
+
+MAKE=gmake
 
 PO=$(wildcard ./locale/ru/LC_MESSAGES/*.po)
 MO=$(patsubst %.po,%.mo,$(PO))
