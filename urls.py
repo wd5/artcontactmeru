@@ -7,10 +7,10 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     '',
-    (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    (r'^admin/(.*)', admin.site.root),
+    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    url(r'^admin/(.*)', admin.site.root),
 
-    (r'^$', 'django.views.generic.simple.redirect_to', {'url': '/events/'}),
+    url(r'^$', 'views.show_list', {'collection': 'event'}, name="events"),
 
     url(r'^events/$', 'views.show_list', {'collection': 'event'}, name="events"),
     url(r'^projects/$', 'views.show_list', {'collection': 'project'}, name="projects"),
