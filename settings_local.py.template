@@ -1,0 +1,38 @@
+# -*- coding: utf-8 -*-
+
+from settings import MIDDLEWARE_CLASSES, INSTALLED_APPS
+
+DATABASE_NAME = 'artcontactru'
+DATABASE_USER = 'artcontactru'
+DATABASE_PASSWORD = 'q1'
+DATABASE_HOST = ''
+
+HOST_NAME = 'artcontactru'
+MEDIA_ROOT = '/home/USER/django.apps/PROJECTNAME/media'
+MEDIA_URL = 'http://%s/media/' % HOST_NAME
+ADMIN_MEDIA_PREFIX = 'http://%s/adminmedia/' % HOST_NAME
+
+# Make this unique, and don't share it with anybody.
+SECRET_KEY = '+&oxu(m-yg6#0am-pdcxb%^#ok(*w&w6gtrh8grdc3m3$=s(#j'
+
+TEMPLATE_DIRS = (
+    '/home/USER/django.apps/PROJECTNAME/templates',
+)
+
+INSTALLED_APPS += (
+    'collection',
+    'mediastore',
+    'tagging',
+)
+
+GOOGLE_ANALYTICS = """
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-3919032-9");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+"""
