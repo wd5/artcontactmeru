@@ -74,6 +74,7 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'django.contrib.webdesign',
     'collection',
+    'mediastore',
     'tagging',
 )
 
@@ -94,17 +95,17 @@ INSTALLED_APPS = (
 # FORCE_LOWERCASE_TAGS = True
 # tagging end
 
-# GOOGLE_ANALYTICS = """
-# <script type="text/javascript">
-# var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-# document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-# </script>
-# <script type="text/javascript">
-# try {
-# var pageTracker = _gat._getTracker("UA-3919032-5");
-# pageTracker._trackPageview();
-# } catch(err) {}</script>
-# """
+GOOGLE_ANALYTICS = """
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-3919032-9");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+"""
 
 # # Шаблон регулярного выражения для сайта
 # PATTERN_SITE = r'^http:\/\/artcontactru\/.*'
