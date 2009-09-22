@@ -1,7 +1,9 @@
-ОПИСАНИЕ
+This project is for simple site describes 
+artistic events and related media content.
 
-Требует для работы:
-- mysql-server-5.x - база данных
+Requires:
+- mysql-server-5.x
 - python
 - django
-- python-markdown - конвертор text-html
+- django-tagging
+- python-markdown
