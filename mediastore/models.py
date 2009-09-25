@@ -14,6 +14,7 @@ class CommonMedia(models.Model):
     desc = models.TextField(verbose_name=u'Описание', null=True, blank=True)
     upload_date = models.DateTimeField(verbose_name='Добавлено', auto_now_add=True)
     last_modification = models.DateTimeField(verbose_name=u'Изменён', auto_now_add=True, auto_now=True)
+    is_main = models.BooleanField(verbose_name=u'Это главный объект?')
     object_id = models.PositiveIntegerField()
     content_type = models.ForeignKey(ContentType,
                                      limit_choices_to=Q(model='person')|Q(model='band')|Q(model='event'))

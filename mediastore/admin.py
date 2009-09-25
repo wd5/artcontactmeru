@@ -10,13 +10,13 @@ class PhotoInline(GenericTabularInline):
     extra = 2
     ct_field_name = 'content_type'
     id_field_name = 'object_id'
-    fields = ('title', 'tags', 'file')
+    fields = ('title', 'tags', 'file', 'is_main')
 
 class PhotoAdmin(admin.ModelAdmin):
     list_display = ('title', 'upload_date', 'last_modification')
     ordered = ('title', 'last_modification')
     search_fields = ('title','tags')
-    fieldsets = ((None, {'fields': ('title', 'content_type', 'tags', 'file', 'desc')}),)
+    fieldsets = ((None, {'fields': ('title', 'content_type', ('tags', 'is_main'), 'file', 'desc')}),)
 admin.site.register(models.Photo, PhotoAdmin)
 
 class VideoAdmin(admin.ModelAdmin):

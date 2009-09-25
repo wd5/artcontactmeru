@@ -10,7 +10,10 @@ from mediastore import views as views_media
 
 def common_context(request):
     """ Общий контекст. """
-    context = {'google_analytics': settings.GOOGLE_ANALYTICS }
+    context = {
+        'google_analytics': settings.GOOGLE_ANALYTICS,
+        'media_url': settings.MEDIA_URL,
+               }
     return context
 
 @render_to('content.html', common_context)

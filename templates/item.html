@@ -4,8 +4,7 @@
 {% load thumbnail_filter %}
 <div class="item">
   <div class="title">{{ item_type }}: {{ item.title }}</div>
-  {#<div style="width: 400px; height: 300px; border: 1px solid gray; margin: 0.5em; float: left;"></div>#}
-  <img class="preview" src="{{ item.file.path|thumbnail:"300x,files" }}" title="Нажмите для просмотра"/>
+  <img class="preview" src="{{ item.photo.all.0.file.path|thumbnail:"200x,files" }}" title="Нажмите для просмотра" align="left"/>
   <span class="description">{{ item.desc|markdown }}</span>
 </div>
 
