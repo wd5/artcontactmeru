@@ -7,8 +7,11 @@ DATABASE_USER = 'artcontactru'
 DATABASE_PASSWORD = 'q1'
 DATABASE_HOST = ''
 
+USER_NAME = 'rad'
 HOST_NAME = 'artcontactru'
-MEDIA_ROOT = '/home/USER/django.apps/PROJECTNAME/media'
+PROJECT_NAME = 'artcontactru'
+
+MEDIA_ROOT = '/home/%s/django.apps/%s/media' % (USER_NAME, PROJECT_NAME)
 MEDIA_URL = 'http://%s/media/' % HOST_NAME
 ADMIN_MEDIA_PREFIX = 'http://%s/adminmedia/' % HOST_NAME
 
@@ -16,7 +19,7 @@ ADMIN_MEDIA_PREFIX = 'http://%s/adminmedia/' % HOST_NAME
 SECRET_KEY = '+&oxu(m-yg6#0am-pdcxb%^#ok(*w&w6gtrh8grdc3m3$=s(#j'
 
 TEMPLATE_DIRS = (
-    '/home/USER/django.apps/PROJECTNAME/templates',
+    '/home/%s/django.apps/%s/templates' % (USER_NAME, PROJECT_NAME),
 )
 
 INSTALLED_APPS += (
