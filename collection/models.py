@@ -44,6 +44,13 @@ class Band(CommonEntity):
     def get_absolute_url(self):
         return u'/project/%i/' % self.id
 
+    def get_photo(self):
+        qs = self.photo.filter(is_main=True)
+        if qs:
+            return qs[0]
+        else:
+            None
+
 class Event(CommonEntity):
     """ Событие. """
     bands = models.ManyToManyField(Band, verbose_name=u'Участники')
@@ -57,4 +64,11 @@ class Event(CommonEntity):
 
     def get_absolute_url(self):
         return u'/event/%i/' % self.id
+
+    def get_photo(self):
+        qs = self.photo.filter(is_main=True)
+        if qs:
+            return qs[0]
+        else:
+            None
 

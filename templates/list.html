@@ -8,7 +8,9 @@
   {% for item in item_list %}
   <div class="item">
     <div class="title">{{ item.title }}</div>
-    <img class="preview" src="{{ item.photo.all.0.file.path|thumbnail:"200x,files" }}" title="Нажмите для просмотра" align="left"/>
+    {% if item.get_photo %}
+    <img class="preview" src="{{ item.get_photo.file.path|thumbnail:"200x,files" }}" title="Нажмите для просмотра" align="left"/>
+    {% endif %}
     <div class="description">{{ item.desc|truncatewords:30 }}</div>
     <div class="follow"><a href="/{{ collection }}/{{ item.id }}/">Далее</a></div>
   </div>

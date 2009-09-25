@@ -4,7 +4,9 @@
 {% load thumbnail_filter %}
 <div class="item">
   <div class="title">{{ item_type }}: {{ item.title }}</div>
-  <img class="preview" src="{{ item.photo.all.0.file.path|thumbnail:"200x,files" }}" title="Нажмите для просмотра" align="left"/>
+  {% if item.get_photo %}
+  <img class="preview" src="{{ item.get_photo.file.path|thumbnail:"200x,files" }}" title="Нажмите для просмотра" align="left"/>
+  {% endif %}
   <span class="description">{{ item.desc|markdown }}</span>
 </div>
 
