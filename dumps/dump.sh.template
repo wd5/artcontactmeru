@@ -1,10 +1,15 @@
-#!/bin/bash
+#!/usr/local/bin/bash
 
-DIR=~/django/moiluchru/dumps
+DB_HOST=mysql.1.USERNAME.cz8.ru
+DB_NAME=db_USERNAME_1
+DB_USER=dbu_USERNAME_1
+DB_PASS=TOP_SECRET
+
+DIR=~/django.apps/PROJECTNAME/dumps
 DF=$DIR/`date '+%Y%m%d'`.dump
 
-echo 'truncate table django_session;' | mysql -u moiluchru --password='q1' moiluchru
-mysqldump -u moiluchru --password='q1' moiluchru > $DF
+echo 'truncate table django_session;' | mysql -h $DB_HOST -u $DB_USER --password="$DB_PASS" $DB_NAME
+mysqldump -h $DB_HOST -u $DB_USER --password="$DB_PASS" $DB_NAME > $DF
 bzip2 $DF
 find $DIR -name '*.dump.bz2' -mtime +6 -delete
 exit 0

@@ -1,0 +1,12 @@
+#!/usr/local/bin/bash
+
+BASE=~/django.apps/PROJECTNAME
+DIR=$BASE/dumps
+MEDIA=$BASE/media
+DF=$DIR/`date '+%Y%m%d'`.tar
+
+cd $PIC
+tar cf $DF $MEDIA
+cd -
+find $DIR -name '*.tar' -mtime +6 -delete
+exit 0
