@@ -8,11 +8,7 @@ FILES=$(wildcard *.py) django.wsgi
 all: subdirs
 
 help:
-	echo "all       - compile objecs"; \
-	echo "install   - install objects"; \
-	echo "clean     - clean project"; \
-	echo "dump      - make database dump"; \
-	echo "translate - prepare i18n"
+	echo -en '\nUseful commands:\n\tinstall\n\tclean\n\ttranslate\n\tshow\n\tget\n\timport_db\n\timport_pics\n\n'
 
 install: create_dir create_media install_files install_subdirs chown_all
 
@@ -28,5 +24,30 @@ translate:
 	for i in ru; do \
 		django-admin.py makemessages --locale $$i; \
 	done
+
+%.mo: %.po
+	django-admin.py compilemessages
+
+agent:
+	. ./ssh-agent.sh
+
+show:
+	ssh $(SHELL_SSH) ls -l $(PRODUCTION_DIR)/$(PROJECTNAME)/dumps
+
+get:
+	scp $(SHELL_SSH):$(PRODUCTION_DIR)/$(PROJECTNAME)/dumps/`date '+%Y%m%d'`.* ./dumps/
+
+import_db:
+	dbdump=`ls ./dumps/*bz2|sort|tail -1`; \
+	impsql=`dirname $$dbdump`/`basename $$dbdump .dump.bz2`.sql; \
+	echo $$dbdump; \
+	bzcat $$dbdump > $$impsql; \
+	echo "\. $$impsql"; \
+	./manage.py dbshell
+
+import_pics:
+	picsdump=`pwd`/`ls ./dumps/*tar|sort|tail -1`; \
+	cd $(CURRENT_INSTALL_DIR)/media/itempics/; \
+	tar xvf $$picsdump
 
 include targets.mk

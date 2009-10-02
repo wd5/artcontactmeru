@@ -1,5 +1,7 @@
 
 PROJECTNAME=artcontactmeru
+PRODUCTION_DIR=/home/site/django.apps
+SHELL_SSH=user@site.ru
 
 OWNER=anedina
 GROUP=anedina
@@ -12,4 +14,3 @@ MAKE=gmake
 
 PO=$(wildcard ./locale/ru/LC_MESSAGES/*.po)
 MO=$(patsubst %.po,%.mo,$(PO))
-
