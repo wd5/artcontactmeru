@@ -15,6 +15,7 @@ class CommonMedia(models.Model):
     upload_date = models.DateTimeField(verbose_name='Добавлено', auto_now_add=True)
     last_modification = models.DateTimeField(verbose_name=u'Изменён', auto_now_add=True, auto_now=True)
     is_main = models.BooleanField(verbose_name=u'Это главный объект?')
+    type = models.CharField(verbose_name=u'Тип', max_length=5)
     object_id = models.PositiveIntegerField()
     content_type = models.ForeignKey(ContentType,
                                      limit_choices_to=Q(model='person')|Q(model='band')|Q(model='event'))
@@ -29,34 +30,43 @@ class CommonMedia(models.Model):
         return parse_tag_input(self.tags)
 
 class Photo(CommonMedia):
-    type = models.CharField(verbose_name=u'Тип', max_length=5, default=u'photo')
     file = models.FileField(verbose_name=u'Файл', upload_to=u'files/photo')
 
     class Meta:
         verbose_name = u'Фотография'
         verbose_name_plural = u'Фотографии'
 
+    def __init__(self, *args, **kwargs):
+        super(Photo, self).__init__(*args, **kwargs)
+        self.type = 'photo'
+
     def get_absolute_url(self):
         return u'/photo/%i/' % self.id
 
 class Video(CommonMedia):
-    type = models.CharField(verbose_name=u'Тип', max_length=5, default=u'video')
     file = models.FileField(verbose_name=u'Файл', upload_to=u'files/video')
 
     class Meta:
         verbose_name = u'Видео'
         verbose_name_plural = u'Видео'
 
+    def __init__(self, *args, **kwargs):
+        super(Video, self).__init__(*args, **kwargs)
+        self.type = 'video'
+
     def get_absolute_url(self):
         return u'/video/%i/' % self.id
 
 class Audio(CommonMedia):
-    type = models.CharField(verbose_name=u'Тип', max_length=5, default=u'photo')
     file = models.FileField(verbose_name=u'Файл', upload_to=u'files/audio')
 
     class Meta:
         verbose_name = u'Аудио'
         verbose_name_plural = u'Аудио'
+
+    def __init__(self, *args, **kwargs):
+        super(Audio, self).__init__(*args, **kwargs)
+        self.type = 'audio'
 
     def get_absolute_url(self):
         return u'/audio/%i/' % self.id

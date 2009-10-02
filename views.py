@@ -2,7 +2,7 @@
 
 from django.conf import settings
 
-from utils import related
+from utils import get_media
 from snippets import render_to
 from collection import models as models_coll
 from collection import views as views_coll
@@ -51,12 +51,12 @@ def show_item(request, collection, id):
         'event': {
             'title': u'Событие',
             'section_list': [{'title': u'Проекты', 'list': views_coll.get('list', 'project')},
-                             {'title': u'Медиа', 'list': related(models_coll.Event, id, models_media.Photo)}]
+                             {'title': u'Медиа', 'list': get_media(models_media, models_coll.Event, id)}]
             },
         'project': {
             'title': u'Проект',
             'section_list': [{'title': u'События', 'list': views_coll.get('list', 'event')},
-                             {'title': u'Медиа', 'list': related(models_coll.Band, id, models_media.Photo)}]
+                             {'title': u'Медиа', 'list': get_media(models_media, models_coll.Band, id)}]
             }
         }
 

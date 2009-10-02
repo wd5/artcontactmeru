@@ -19,12 +19,26 @@ class PhotoAdmin(admin.ModelAdmin):
     fieldsets = ((None, {'fields': ('title', 'content_type', ('tags', 'is_main'), 'file', 'desc')}),)
 admin.site.register(models.Photo, PhotoAdmin)
 
+class VideoInline(GenericTabularInline):
+    model = models.Video
+    extra = 2
+    ct_field_name = 'content_type'
+    id_field_name = 'object_id'
+    fields = ('title', 'tags', 'file', 'is_main')
+
 class VideoAdmin(admin.ModelAdmin):
     list_display = ('title', 'upload_date', 'last_modification')
     ordered = ('title', 'last_modification')
     search_fields = ('title','tags')
     fieldsets = ((None, {'fields': ('title', 'tags', 'file', 'desc')}),)
 admin.site.register(models.Video, VideoAdmin)
+
+class AudioInline(GenericTabularInline):
+    model = models.Audio
+    extra = 2
+    ct_field_name = 'content_type'
+    id_field_name = 'object_id'
+    fields = ('title', 'tags', 'file', 'is_main')
 
 class AudioAdmin(admin.ModelAdmin):
     list_display = ('title', 'upload_date', 'last_modification')

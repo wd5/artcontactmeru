@@ -5,7 +5,7 @@
 
   <div class="area">
     {% for i in section.list %}
-    <div><a href="{{ i.get_absolute_url }}">{{ i.title }}</a></div>
+    <div>{{ i.type }} <a href="{{ i.get_absolute_url }}">{{ i.title }}</a></div>
     {% endfor %}
   </div>
 </div>
