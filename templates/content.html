@@ -5,14 +5,14 @@
     <td width="20%" valign="top">
       {% include "order.html" %}
     </td>
-    <td width="50%" valign="top" class="content">
+    <td width="60%" valign="top" class="content">
       {% ifequal mode "list" %}
         {% include "list.html" %}
       {% else %}
         {% include "item.html" %}
       {% endifequal %}
     </td>
-    <td width="15%" valign="top">
+    <td width="20%" valign="top">
       {% for section in section_list %}
         {% include "short.html" %}
       {% endfor %}
