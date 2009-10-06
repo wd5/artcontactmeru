@@ -6,7 +6,11 @@
   <div class="title">{{ item_type }}: {{ item.title }}</div>
   {% if item.get_photo %}
   <img class="preview" src="{{ item.get_photo.file.path|thumbnail:"200x,files" }}" title="Нажмите для просмотра" align="left"/>
+  {% else %}
+  <img src="{{ item.file.path|thumbnail:"600x,files" }}" align="center"/>
   {% endif %}
+  {% if item.desc %}
   <span class="description">{{ item.desc|markdown }}</span>
+  {% endif %}
 </div>
 
