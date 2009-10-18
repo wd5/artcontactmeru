@@ -36,6 +36,7 @@ button:hover { background-color: gray; }
 .title {
    font-family: comic sans ms; font-size: 100%;
 }
+.title a { text-decoration: none; color: white; }
 
 #header {
    position: absolute; top: 0px; botton: auto; left: 0px; right: 0px; height: 4em;
