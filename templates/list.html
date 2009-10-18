@@ -7,7 +7,7 @@
 <div id="item-list">
   {% for item in item_list %}
   <div class="item">
-    <div class="title">{{ item.title }}</div>
+    <div class="title"><a href="/{{ collection }}/{{ item.slug }}/">{{ item.title }}</a></div>
     {% if item.get_photo %}
     <img class="preview" src="{{ item.get_photo.file.path|thumbnail:"200x,files" }}" title="Нажмите для просмотра" align="left"/>
     {% endif %}
