@@ -15,12 +15,14 @@ def common_context(request):
         'debug': settings.DEBUG,
         'google_analytics': settings.GOOGLE_ANALYTICS,
         'media_url': settings.MEDIA_URL,
-               }
+        }
     return context
 
 @render_to('content.html', common_context)
 def show_list(request, collection):
     """ Отображение страницы со списком событий. """
+
+
     opts = {
         'event': {
             'title': u'События',
@@ -33,10 +35,10 @@ def show_list(request, collection):
                              {'title': u'Медиа', 'list': ['x', 'y', 'z']}]
             }
         }
-
+    
     val = opts[collection]
     list = views_coll.get('list', collection)
-
+    
     context = {'mode': 'list', 'collection': collection,
                'item_list': list,
                'list_title': val['title'],
@@ -64,16 +66,17 @@ def show_item(request, collection, slug):
 
     val = opts[collection]
     item = val['model'].objects.get(slug=slug)
+    media = get_media(models_media, models_coll.Band, item.id)
     context = {'mode': 'item',
                'item': views_coll.get('item', collection, slug),
                'item_type': val['title'],
                'section_list': val['section_list'],
-               'media': get_media(models_media, models_coll.Band, item.id)
+               'media': media
                }
     return context
 
 @render_to('content.html', common_context)
-def show_item_media(request, collection, id):
+def show_item_media(request, collection, slug):
     """ Отображение страницы с элементом. """
     opts = {'photo': {'title': u'Фотография', },
             'video': {'title': u'Видео', },
@@ -82,7 +85,7 @@ def show_item_media(request, collection, id):
     val.update({'section_list': [{'title': u'Группы', 'list': views_coll.get('list', 'project')},
                                  {'title': u'События', 'list': views_coll.get('list', 'event')}]})
     context = {'mode': 'item',
-               'item': views_media.get('item', collection, id),
+               'item': views_media.get('item', collection, slug),
                'item_type': val['title'],
                'section_list': val['section_list']
                }

@@ -22,6 +22,7 @@ class Catalog(models.Model):
 # Абстрактная модель
 class CommonMedia(models.Model):
     title = models.CharField(verbose_name=u'Заголовок', max_length=64)
+    slug = models.CharField(u'Транслит', max_length=255)
     desc = models.TextField(verbose_name=u'Описание', null=True, blank=True)
     upload_date = models.DateTimeField(verbose_name='Добавлено', auto_now_add=True)
     last_modification = models.DateTimeField(verbose_name=u'Изменён', auto_now_add=True, auto_now=True)
@@ -53,7 +54,7 @@ class Photo(CommonMedia):
         self.type = 'photo'
 
     def get_absolute_url(self):
-        return u'/photo/%i/' % self.id
+        return u'/photo/%s/' % self.slug
 
 class Video(CommonMedia):
     file = models.FileField(verbose_name=u'Файл', upload_to=u'files/video')
@@ -67,7 +68,7 @@ class Video(CommonMedia):
         self.type = 'video'
 
     def get_absolute_url(self):
-        return u'/video/%i/' % self.id
+        return u'/video/%s/' % self.slug
 
 class Audio(CommonMedia):
     file = models.FileField(verbose_name=u'Файл', upload_to=u'files/audio')
@@ -81,5 +82,5 @@ class Audio(CommonMedia):
         self.type = 'audio'
 
     def get_absolute_url(self):
-        return u'/audio/%i/' % self.id
+        return u'/audio/%s/' % self.slug
 

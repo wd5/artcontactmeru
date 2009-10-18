@@ -205,3 +205,24 @@ def translit(value):
     for symb_in, symb_out in TRANSTABLE:
         translit = translit.replace(symb_in, symb_out)
     return translit
+
+def save_file(mimetype):
+    """ http://cargo.caml.ru/djangobook/text/savefiledecorator/ 
+
+    Декоратор для выдачи файла с правильным именем и MIME типом.
+
+    Если обёрнутая функция возвращает не кортеж, то декоратор просто
+    возвратит то, что было возвращено. """
+    def saver(func):
+        def wrapper(request, *args, **kw):
+            result = func(request, *args, **kw)
+            if isinstance(result, tuple):
+                filename, data = result
+                resp = HttpResponse(data, mimetype=mimetype)
+                resp['Content-Disposition'] = \
+                    'attachment; filename=%s' % filename
+                return resp
+            return result
+        return wrapper
+    return saver
+
