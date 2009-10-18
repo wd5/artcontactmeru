@@ -12,7 +12,7 @@ HOST_NAME = 'artcontactru'
 PROJECT_NAME = 'artcontactru'
 
 MEDIA_ROOT = '/home/%s/django.apps/%s/media' % (USER_NAME, PROJECT_NAME)
-MEDIA_URL = 'http://%s/media/' % HOST_NAME
+MEDIA_URL = 'http://%s/media' % HOST_NAME
 ADMIN_MEDIA_PREFIX = 'http://%s/adminmedia/' % HOST_NAME
 
 # Make this unique, and don't share it with anybody.

@@ -12,5 +12,40 @@
   {% if item.desc %}
   <span class="description">{{ item.desc|markdown }}</span>
   {% endif %}
+
+  <div style="clear: both;"></div>
+
+  <div>
+    <div>Фото</div>
+  {% for i in media %}
+    {% ifequal i.type 'photo' %}
+      <a href="{{ i.get_absolute_url }}">
+	<img class="preview" src="{{ i.file.path|thumbnail:"100x,files" }}" title="Нажмите для просмотра" align="left"/>
+      </a>
+    {% endifequal %}
+  {% endfor %}
+  </div>
+
+  <div style="clear: both;"></div>
+
+  <div>
+    <div>Аудио</div>
+  {% for i in media %}
+    {% ifequal i.type 'audio' %}
+      <div>{{ i.type }} <a href="{{ i.get_absolute_url }}">{{ i.title }}</a></div>
+    {% endifequal %}
+  {% endfor %}
+  </div>
+
+  <div style="clear: both;"></div>
+
+  <div>
+    <div>Видео</div>
+  {% for i in media %}
+    {% ifequal i.type 'video' %}
+      <div>{{ i.type }} <a href="{{ i.get_absolute_url }}">{{ i.title }}</a></div>
+    {% endifequal %}
+  {% endfor %}
+
 </div>
 

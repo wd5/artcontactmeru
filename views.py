@@ -50,22 +50,25 @@ def show_item(request, collection, slug):
     opts = {
         'event': {
             'title': u'Событие',
+            'model': models_coll.Event,
             'section_list': [{'title': u'Проекты', 'list': views_coll.get('list', 'project')},
                              {'title': u'Медиа', 'list': None}] #get_media(models_media, models_coll.Event, id)}]
             },
         'project': {
             'title': u'Проект',
+            'model': models_coll.Band,
             'section_list': [{'title': u'События', 'list': views_coll.get('list', 'event')},
                              {'title': u'Медиа', 'list': None}] #get_media(models_media, models_coll.Band, id)}]
             }
         }
 
     val = opts[collection]
-
+    item = val['model'].objects.get(slug=slug)
     context = {'mode': 'item',
                'item': views_coll.get('item', collection, slug),
                'item_type': val['title'],
-               'section_list': val['section_list']
+               'section_list': val['section_list'],
+               'media': get_media(models_media, models_coll.Band, item.id)
                }
     return context
 
