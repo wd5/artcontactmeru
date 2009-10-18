@@ -8,6 +8,17 @@ from django.contrib.contenttypes import generic
 
 from tagging.fields import TagField
 
+class Catalog(models.Model):
+    parent = models.ForeignKey('self', blank=True, null=True, verbose_name=u'Предок')
+    title = models.CharField(verbose_name=u'Заголовок', max_length=64)
+
+    class Meta:
+        verbose_name = u'Каталог'
+        verbose_name_plural = u'Каталоги'
+
+    def __unicode__(self):
+        return self.title
+
 # Абстрактная модель
 class CommonMedia(models.Model):
     title = models.CharField(verbose_name=u'Заголовок', max_length=64)
@@ -16,6 +27,7 @@ class CommonMedia(models.Model):
     last_modification = models.DateTimeField(verbose_name=u'Изменён', auto_now_add=True, auto_now=True)
     is_main = models.BooleanField(verbose_name=u'Это главный объект?')
     type = models.CharField(verbose_name=u'Тип', max_length=5)
+    catalog = models.ForeignKey(Catalog, blank=True, null=True)
     object_id = models.PositiveIntegerField()
     content_type = models.ForeignKey(ContentType,
                                      limit_choices_to=Q(model='person')|Q(model='band')|Q(model='event'))

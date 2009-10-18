@@ -2,7 +2,9 @@
 
 from django.db import models
 from django.contrib.contenttypes import generic
+from django.utils.html import escape
 
+from snippets import translit
 from mediastore.models import Photo, Video, Audio
 
 # Определяем абстрактный класс для элемента коллекции
@@ -36,13 +38,18 @@ class Band(CommonEntity):
     """ Группа, коллектив артистов. """
     members = models.ManyToManyField(Person, verbose_name=u'Состав')
     photo = generic.GenericRelation(Photo)
+    slug = models.CharField(u'Транслит', max_length=255)
 
     class Meta:
         verbose_name = u'Коллектив'
         verbose_name_plural = u'Коллективы'
 
     def get_absolute_url(self):
-        return u'/project/%i/' % self.id
+        return u'/project/%s/' % self.slug
+
+#     def save(self):
+#         self.slug = translit(escape(self.title))
+#         super(Band, self).save()
 
     def get_photo(self):
         qs = self.photo.filter(is_main=True)

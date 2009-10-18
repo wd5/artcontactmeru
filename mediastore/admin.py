@@ -5,6 +5,13 @@ from django.contrib.contenttypes.generic import GenericTabularInline
 
 from mediastore import models
 
+class CatalogAdmin(admin.ModelAdmin):
+    list_display = ('title', 'parent')
+    ordered = ('title', 'parent')
+    search_fields = ('title',)
+    fieldsets = ((None, {'fields': ('title', 'parent')}),)
+admin.site.register(models.Catalog, CatalogAdmin)
+
 class PhotoInline(GenericTabularInline):
     model = models.Photo
     extra = 2
@@ -16,7 +23,7 @@ class PhotoAdmin(admin.ModelAdmin):
     list_display = ('title', 'upload_date', 'last_modification')
     ordered = ('title', 'last_modification')
     search_fields = ('title','tags')
-    fieldsets = ((None, {'fields': ('title', 'content_type', ('tags', 'is_main'), 'file', 'desc')}),)
+    fieldsets = ((None, {'fields': ('title', 'catalog', 'content_type', ('tags', 'is_main'), 'file', 'desc')}),)
 admin.site.register(models.Photo, PhotoAdmin)
 
 class VideoInline(GenericTabularInline):

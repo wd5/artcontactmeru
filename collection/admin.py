@@ -15,10 +15,10 @@ admin.site.register(models.Person, PersonAdmin)
 class BandAdmin(admin.ModelAdmin):
     model = models.Band
     inlines = (PhotoInline, VideoInline, AudioInline)
-    list_display = ('title',)
+    list_display = ('title', 'slug')
     ordered = ('title',)
     search_fields = ('title',)
-    fieldsets = ((None, {'fields': ('title', 'desc')}),)
+    fieldsets = ((None, {'fields': (('title', 'slug'), 'desc')}),)
 admin.site.register(models.Band, BandAdmin)
 
 class EventAdmin(admin.ModelAdmin):

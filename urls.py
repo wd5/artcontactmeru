@@ -10,7 +10,7 @@ urlpatterns = patterns(
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/(.*)', admin.site.root),
 
-    url(r'^$', 'views.show_list', {'collection': 'event'}, name="events"),
+    url(r'^$', 'views.show_list', {'collection': 'project'}, name="projects"),
 
     url(r'^events/$', 'views.show_list', {'collection': 'event'}, name="events"),
     url(r'^projects/$', 'views.show_list', {'collection': 'project'}, name="projects"),
