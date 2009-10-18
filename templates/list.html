@@ -12,7 +12,7 @@
     <img class="preview" src="{{ item.get_photo.file.path|thumbnail:"200x,files" }}" title="Нажмите для просмотра" align="left"/>
     {% endif %}
     <div class="description">{{ item.desc|truncatewords:30 }}</div>
-    <div class="follow"><a href="/{{ collection }}/{{ item.id }}/">Далее</a></div>
+    <div class="follow"><a href="/{{ collection }}/{{ item.slug }}/">Далее</a></div>
   </div>
   {% empty %}
   <div class="empty">

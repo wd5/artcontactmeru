@@ -4,7 +4,7 @@ from django.http import Http404
 from collection import models as c_models
 from mediastore import models as m_models
 
-def get(mode=None, collection=None, id=None):
+def get(mode=None, collection=None, slug=None):
     """ mode is ('list', 'item'), collection is ('project', 'event'), id if exists """
     handlers = {
         'event': (c_models.Event, '-when'),
@@ -15,7 +15,7 @@ def get(mode=None, collection=None, id=None):
         if mode == 'list':
             return model.objects.all().order_by(sorting)
         else:
-            return model.objects.get(id=id)
+            return model.objects.get(slug=slug)
     except (c_models.Event.DoesNotExist, c_models.Band.DoesNotExist, KeyError):
         raise Http404
     

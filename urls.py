@@ -17,6 +17,6 @@ urlpatterns = patterns(
     url(r'^medias/$', 'views.show_list', {'collection': 'media'}, name="medias"),
 
     url(r'^event/(?P<id>\d+)/$', 'views.show_item', {'collection': 'event'}, name="event"),
-    url(r'^project/(?P<id>\d+)/$', 'views.show_item', {'collection': 'project'}, name="project"),
+    url(r'^project/(?P<slug>\w+)/$', 'views.show_item', {'collection': 'project'}, name="project"),
     url(r'^photo/(?P<id>\d+)/$', 'views.show_item_media', {'collection': 'photo'}, name="photo"),
 )

@@ -45,25 +45,25 @@ def show_list(request, collection):
     return context
 
 @render_to('content.html', common_context)
-def show_item(request, collection, id):
+def show_item(request, collection, slug):
     """ Отображение страницы с элементом. """
     opts = {
         'event': {
             'title': u'Событие',
             'section_list': [{'title': u'Проекты', 'list': views_coll.get('list', 'project')},
-                             {'title': u'Медиа', 'list': get_media(models_media, models_coll.Event, id)}]
+                             {'title': u'Медиа', 'list': None}] #get_media(models_media, models_coll.Event, id)}]
             },
         'project': {
             'title': u'Проект',
             'section_list': [{'title': u'События', 'list': views_coll.get('list', 'event')},
-                             {'title': u'Медиа', 'list': get_media(models_media, models_coll.Band, id)}]
+                             {'title': u'Медиа', 'list': None}] #get_media(models_media, models_coll.Band, id)}]
             }
         }
 
     val = opts[collection]
 
     context = {'mode': 'item',
-               'item': views_coll.get('item', collection, id),
+               'item': views_coll.get('item', collection, slug),
                'item_type': val['title'],
                'section_list': val['section_list']
                }
