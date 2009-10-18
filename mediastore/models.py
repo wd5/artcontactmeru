@@ -57,7 +57,7 @@ class Photo(CommonMedia):
         return u'/photo/%s/' % self.slug
 
 class Video(CommonMedia):
-    file = models.FileField(verbose_name=u'Файл', upload_to=u'files/video')
+    youtube = models.CharField(verbose_name=u'YouTube ID', max_length=20)
 
     class Meta:
         verbose_name = u'Видео'
