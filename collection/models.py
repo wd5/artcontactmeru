@@ -63,6 +63,7 @@ class Event(CommonEntity):
     bands = models.ManyToManyField(Band, verbose_name=u'Участники')
     when = models.DateField(verbose_name=u'Дата')
     where = models.CharField(verbose_name=u'Место проведения', max_length=256)
+    slug = models.CharField(u'Транслит', max_length=255)
     photo = generic.GenericRelation(Photo)
 
     class Meta:
@@ -70,7 +71,7 @@ class Event(CommonEntity):
         verbose_name_plural = u'События'
 
     def get_absolute_url(self):
-        return u'/event/%i/' % self.id
+        return u'/event/%s/' % self.slug
 
     def get_photo(self):
         qs = self.photo.filter(is_main=True)

@@ -27,6 +27,6 @@ class EventAdmin(admin.ModelAdmin):
     list_display = ('title', 'where', 'when')
     ordered = ('title',)
     search_fields = ('title',)
-    fieldsets = ((None, {'fields': ('title', 'desc', 'bands', 'when', 'where')}),)
+    fieldsets = ((None, {'fields': (('title', 'slug'), 'desc', 'bands', 'when', 'where')}),)
 admin.site.register(models.Event, EventAdmin)
 

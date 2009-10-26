@@ -66,7 +66,7 @@ def show_item(request, collection, slug):
 
     val = opts[collection]
     item = val['model'].objects.get(slug=slug)
-    media = get_media(models_media, models_coll.Band, item.id)
+    media = get_media(models_media, val['model'], item.id)
     context = {'mode': 'item',
                'item': views_coll.get('item', collection, slug),
                'item_type': val['title'],
