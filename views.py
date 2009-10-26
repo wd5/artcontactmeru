@@ -26,13 +26,11 @@ def show_list(request, collection):
     opts = {
         'event': {
             'title': u'События',
-            'section_list': [{'title': u'Проекты', 'list': views_coll.get('list', 'project')},
-                             {'title': u'Медиа', 'list': ['x', 'y', 'z']}]
+            'section_list': [ {'title': u'Проекты', 'list': views_coll.get('list', 'project')}, ]
             },
         'project': {
             'title': u'Проекты',
-            'section_list': [{'title': u'События', 'list': views_coll.get('list', 'event')},
-                             {'title': u'Медиа', 'list': ['x', 'y', 'z']}]
+            'section_list': [ {'title': u'События', 'list': views_coll.get('list', 'event')}, ]
             }
         }
     

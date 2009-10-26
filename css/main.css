@@ -23,6 +23,7 @@ textarea {
    border: 1px solid gray;
 }
 #order textarea { border: 0px solid black; background: black url(/pics/dots_32x15.gif) repeat scroll 0 0; }
+#order #contact { padding: 0.1em; }
 
 button {
    width: 96%; padding: 2px 4px;
@@ -94,8 +95,9 @@ button:hover { background-color: gray; }
 
 .preview { float: left; margin: 0.5em; border: 1px solid #770b0b; }
 
-.follow { clear: both; text-align: right; margin: 0.1em 0em 1em 0em; }
+.follow { clear: both; text-align: right; margin: 0.1em 0em 1em 0em; font-size: 80%; }
 
 .short-area { min-height: 10em; }
 
-.area { padding: 0.5em; }
+.area { padding: 0.5em; font-size: 80%; }
+.area div { padding-top: 0.3em; padding-bottom: 0.3em; }
