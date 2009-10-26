@@ -37,7 +37,7 @@ def show_list(request, collection):
         }
     
     val = opts[collection]
-    list = views_coll.get('list', collection)
+    list = views_coll.get('list', collection).order_by('order_num')
     
     context = {'mode': 'list', 'collection': collection,
                'item_list': list,

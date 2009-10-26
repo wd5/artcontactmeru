@@ -13,6 +13,7 @@ class CommonEntity(models.Model):
     desc = models.TextField(verbose_name=u'Описание', null=True, blank=True)
     reg_date = models.DateTimeField(verbose_name=u'Зарегистрирован', auto_now_add=True)
     last_modification = models.DateTimeField(verbose_name=u'Изменён', auto_now_add=True, auto_now=True)
+    order_num = models.IntegerField(verbose_name=u'Порядок сортировки', default=1)
 
     class Meta:
         abstract = True
