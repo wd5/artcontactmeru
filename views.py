@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import operator
+
 from django.conf import settings
 
 from utils import get_media
@@ -65,6 +67,7 @@ def show_item(request, collection, slug):
     val = opts[collection]
     item = val['model'].objects.get(slug=slug)
     media = get_media(models_media, val['model'], item.id)
+    media.sort(key=operator.attrgetter('order_num'))
     context = {'mode': 'item',
                'item': views_coll.get('item', collection, slug),
                'item_type': val['title'],

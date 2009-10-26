@@ -15,7 +15,7 @@ def get(mode=None, collection=None, slug=None):
         }
     try:
         if mode == 'list':
-            return handlers[collection].objects.all()
+            return handlers[collection].objects.all().order_by(order_num)
         else:
             return handlers[collection].objects.get(slug=slug)
     except (models.Photo.DoesNotExist, models.Video.DoesNotExist, models.Audio.DoesNotExist, KeyError):

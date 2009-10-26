@@ -17,13 +17,13 @@ class PhotoInline(GenericTabularInline):
     extra = 2
     ct_field_name = 'content_type'
     id_field_name = 'object_id'
-    fields = ('title', 'slug', 'tags', 'file', 'is_main')
+    fields = ('title', 'slug', 'tags', 'file', 'order_num', 'is_main')
 
 class PhotoAdmin(admin.ModelAdmin):
-    list_display = ('title', 'upload_date', 'last_modification')
-    ordered = ('title', 'last_modification')
+    list_display = ('title', 'order_num', 'upload_date', 'last_modification')
+    ordering = ('order_num', 'title', 'last_modification')
     search_fields = ('title','tags')
-    fieldsets = ((None, {'fields': (('title', 'slug'), 'catalog', 'content_type', ('tags', 'is_main'), 'file', 'desc')}),)
+    fieldsets = ((None, {'fields': (('title', 'slug', 'order_num'), 'catalog', 'content_type', ('tags', 'is_main'), 'file', 'desc')}),)
 admin.site.register(models.Photo, PhotoAdmin)
 
 class VideoInline(GenericTabularInline):
@@ -31,13 +31,13 @@ class VideoInline(GenericTabularInline):
     extra = 2
     ct_field_name = 'content_type'
     id_field_name = 'object_id'
-    fields = ('title', 'slug', 'tags', 'youtube', 'is_main')
+    fields = ('title', 'slug', 'tags', 'youtube', 'order_num', 'is_main')
 
 class VideoAdmin(admin.ModelAdmin):
-    list_display = ('title', 'upload_date', 'last_modification')
-    ordered = ('title', 'last_modification')
+    list_display = ('title', 'order_num', 'upload_date', 'last_modification')
+    ordering = ('order_num', 'title', 'last_modification')
     search_fields = ('title','tags')
-    fieldsets = ((None, {'fields': (('title', 'slug'), 'tags', 'youtube', 'desc')}),)
+    fieldsets = ((None, {'fields': (('title', 'slug', 'order_num'), 'tags', 'youtube', 'desc')}),)
 admin.site.register(models.Video, VideoAdmin)
 
 class AudioInline(GenericTabularInline):
@@ -45,12 +45,12 @@ class AudioInline(GenericTabularInline):
     extra = 2
     ct_field_name = 'content_type'
     id_field_name = 'object_id'
-    fields = ('title', 'slug', 'tags', 'file', 'is_main')
+    fields = ('title', 'slug', 'tags', 'file', 'order_num', 'is_main')
 
 class AudioAdmin(admin.ModelAdmin):
-    list_display = ('title', 'upload_date', 'last_modification')
-    ordered = ('title', 'last_modification')
+    list_display = ('title', 'order_num', 'upload_date', 'last_modification')
+    ordered = ('order_num', 'title', 'last_modification')
     search_fields = ('title','tags')
-    fieldsets = ((None, {'fields': (('title', 'slug'), 'tags', 'file', 'desc')}),)
+    fieldsets = ((None, {'fields': (('title', 'slug', 'order_num'), 'tags', 'file', 'desc')}),)
 admin.site.register(models.Audio, AudioAdmin)
 

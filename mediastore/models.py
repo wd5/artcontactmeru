@@ -28,6 +28,7 @@ class CommonMedia(models.Model):
     last_modification = models.DateTimeField(verbose_name=u'Изменён', auto_now_add=True, auto_now=True)
     is_main = models.BooleanField(verbose_name=u'Это главный объект?')
     type = models.CharField(verbose_name=u'Тип', max_length=5)
+    order_num = models.IntegerField(verbose_name=u'Порядок сортировки', default=1)
     catalog = models.ForeignKey(Catalog, blank=True, null=True)
     object_id = models.PositiveIntegerField()
     content_type = models.ForeignKey(ContentType,
@@ -37,6 +38,9 @@ class CommonMedia(models.Model):
 
     class Meta:
         abstract = True
+
+    def __unicode__(self):
+        return self.title
 
     def get_tag_list(self):
         from tagging.utils import parse_tag_input
