@@ -53,14 +53,12 @@ def show_item(request, collection, slug):
         'event': {
             'title': u'Событие',
             'model': models_coll.Event,
-            'section_list': [{'title': u'Проекты', 'list': views_coll.get('list', 'project')},
-                             {'title': u'Медиа', 'list': None}] #get_media(models_media, models_coll.Event, id)}]
+            'section_list': [ {'title': u'Проекты', 'list': views_coll.get('list', 'project')}, ]
             },
         'project': {
             'title': u'Проект',
             'model': models_coll.Band,
-            'section_list': [{'title': u'События', 'list': views_coll.get('list', 'event')},
-                             {'title': u'Медиа', 'list': None}] #get_media(models_media, models_coll.Band, id)}]
+            'section_list': [ {'title': u'События', 'list': views_coll.get('list', 'event')}, ]
             }
         }
 
