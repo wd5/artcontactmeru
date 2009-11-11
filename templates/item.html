@@ -15,6 +15,7 @@
 
   <div style="clear: both;"></div>
 
+  {% if media %}
   <div>
     <div>Фото</div>
   {% for i in media %}
@@ -33,15 +34,15 @@
   {% for i in media %}
     {% ifequal i.type 'audio' %}
     <div>{{ i.title }}</div>
-    <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" 
-	    codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" 
+    <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+	    codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0"
 	    width="165" height="37" id="niftyPlayer1" align="">
       <param name=movie value="niftyplayer.swf?file=/media/{{ i.file }}&as=0">
       <param name=quality value=high>
       <param name=bgcolor value=#FFFFFF>
-      <embed src="/media/niftyplayer.swf?file=/media/{{ i.file }}&as=0" quality="high" bgcolor="#FFFFFF" 
-	     width="165" height="37" name="niftyPlayer1" align="" 
-	     type="application/x-shockwave-flash" swLiveConnect="true" 
+      <embed src="/media/niftyplayer.swf?file=/media/{{ i.file }}&as=0" quality="high" bgcolor="#FFFFFF"
+	     width="165" height="37" name="niftyPlayer1" align=""
+	     type="application/x-shockwave-flash" swLiveConnect="true"
 	     pluginspage="http://www.macromedia.com/go/getflashplayer">
       </embed>
     </object>
@@ -61,11 +62,11 @@
       <param name="movie" value="http://www.youtube.com/v/{{ i.youtube }}&hl=ru&fs=1&"></param>
       <param name="allowFullScreen" value="true"></param>
       <param name="allowscriptaccess" value="always"></param>
-      <embed src="http://www.youtube.com/v/{{ i.youtube }}&hl=ru&fs=1&" type="application/x-shockwave-flash" 
+      <embed src="http://www.youtube.com/v/{{ i.youtube }}&hl=ru&fs=1&" type="application/x-shockwave-flash"
 	     allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed>
     </object>
     {% endifequal %}
   {% endfor %}
-
+  {% endif %}
 </div>
 
