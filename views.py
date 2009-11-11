@@ -35,10 +35,10 @@ def show_list(request, collection):
             'section_list': [ {'title': u'События', 'list': views_coll.get('list', 'event')}, ]
             }
         }
-    
+
     val = opts[collection]
     list = views_coll.get('list', collection).order_by('order_num')
-    
+
     context = {'mode': 'list', 'collection': collection,
                'item_list': list,
                'list_title': val['title'],
@@ -81,7 +81,7 @@ def show_item_media(request, collection, slug):
             'video': {'title': u'Видео', },
             'audio': {'title': u'Аудио', }}
     val = opts[collection]
-    val.update({'section_list': [{'title': u'Группы', 'list': views_coll.get('list', 'project')},
+    val.update({'section_list': [{'title': u'Проекты', 'list': views_coll.get('list', 'project')},
                                  {'title': u'События', 'list': views_coll.get('list', 'event')}]})
     context = {'mode': 'item',
                'item': views_media.get('item', collection, slug),

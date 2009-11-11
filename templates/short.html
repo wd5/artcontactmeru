@@ -5,7 +5,9 @@
 
   <div class="area">
     {% for i in section.list %}
-    <div>{{ i.reg_date|date:"y.m.d" }} <a href="{{ i.get_absolute_url }}">{{ i.title }}</a></div>
+    <div>
+      {% ifequal section.title 'События' %}{{ i.reg_date|date:"y.m.d" }}{% endifequal %}
+      <a href="{{ i.get_absolute_url }}">{{ i.title }}</a></div>
     {% endfor %}
   </div>
 </div>
